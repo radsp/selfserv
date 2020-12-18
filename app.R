@@ -37,7 +37,7 @@ if(!require(ggthemes)){
 source("app_util.R")
 source("app_global.R")
 source("app_ui.R")
-source("app_server_v2.R")
+source("app_server.R")
 
 # Call the app ---------------------------------------------------------------------------
 
