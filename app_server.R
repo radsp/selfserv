@@ -1,5 +1,8 @@
 server <- function(input, output, session){
   
+  # Prevent "greying out" when running in Civis Platform
+  session$allowReconnect("force")
+  
   # handle for screen dimension to enable plot sizing
   screen_dim <- reactive({
     return(as.numeric(input$dimension))
@@ -26,20 +29,20 @@ server <- function(input, output, session){
   })
   
   
-  listen4area <- reactive({list(input$selector_sp_aggr, input$selector_country)})
-  
   # Populate subnational data field based on country selection
-  observeEvent(listen4area(), {
-    dat <- dat_sp()
+  observe({
     if (input$selector_sp_aggr %in% "admin1") {
-      output$ui_area_selection <- renderUI({
-        pickerInput(inputId = "selector_area", label = "Province/State",
-                    choices = as.character(unique(dat$admin_level_1)),
-                    multiple = TRUE, options = list(`actions-box` = TRUE))
-      })
+      dat <- xadm1_mo %>% filter(country %in% input$selector_country)
+        output$ui_area_selection <- renderUI({
+          pickerInput(inputId = "selector_area", label = "Province/State",
+                      choices = as.character(unique(dat$admin_level_1)),
+                      multiple = TRUE, options = list(`actions-box` = TRUE))
+        })
     # Note that for admin level 2, it would probably be more user-friendly
     # if we can include the admin level 1 in the list with collapsible feature
     } else if (input$selector_sp_aggr %in% "admin2") {
+      dat <- xadm1_mo %>%      # NEED TO CHANGE THIS TO ADM2 DATA WHEN AVAILABLE !!!
+        filter(country %in% input$selector_country) 
       output$ui_area_selection <- renderUI({
         pickerInput(inputId = "selector_area", label = "District",
                     choices = as.character(unique(dat$admin_level_2)),
@@ -48,7 +51,6 @@ server <- function(input, output, session){
     } else {
       output$ui_area_selection <- renderUI({NULL})
     }
-    
   })
   
   # Place plot description below the input selection. Ideally this should be 
@@ -148,6 +150,7 @@ server <- function(input, output, session){
                                 dropdown(HTML("<h6 style='color:#005ea2'>PLOT SETTINGS</h6>"),   
                                          drp_bttn,
                                          br(),
+                                         radio_bttn,
                                          circle = TRUE, size = "xs", status = "default",
                                          icon = icon("gear"), right = TRUE,
                                          tooltip = tooltipOptions(title = "Plot settings"))
