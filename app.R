@@ -19,6 +19,7 @@ library(plotly)
 # }
 
 install.packages("bslib")
+library(bslib)
 
 if(!require(ggthemes)){
   install.packages("ggthemes")
