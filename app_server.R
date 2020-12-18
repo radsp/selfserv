@@ -140,7 +140,7 @@ server <- function(input, output, session){
                                    choices = c("Linear", "Splines", "None"), selected = "None")
     } else {
         drp_bttn <- "TBD"
-        swtch_bttn <- NULL
+        swtch_bttn <- radio_bttn <- NULL
     }
     
     output$ui_mainpanel <- renderUI({
