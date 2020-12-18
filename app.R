@@ -12,6 +12,7 @@ library(plotly)
 
 if(!require(bslib)){
   install.packages("remotes")
+  remotes::install_github("rstudio/htmltools")
   remotes::install_github("rstudio/bslib")
   library(bslib)
 }
