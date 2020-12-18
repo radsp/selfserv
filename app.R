@@ -8,13 +8,17 @@ library(shinyWidgets)
 library(civis)
 library(ggplot2)
 library(tidyverse)
-library(ggthemes)
 library(plotly)
 
 if(!require(bslib)){
   install.packages("remotes")
   remotes::install_github("rstudio/bslib")
   library(bslib)
+}
+
+if(!require(ggthemes)){
+  install.packages("ggthemes")
+  library(ggthemes)
 }
 
 # remotes::install_github("rstudio/bslib")
