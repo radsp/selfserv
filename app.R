@@ -10,16 +10,14 @@ library(ggplot2)
 library(tidyverse)
 library(plotly)
 
-# if(!require(bslib)){
-#   install.packages("remotes")
-#   remotes::install_github("rstudio/htmltools")
-#   library(htmltools)
-#   remotes::install_github("rstudio/bslib")
-#   library(bslib)
-# }
+if(!require(bslib)){
+  install.packages("remotes")
+  remotes::install_github("rstudio/htmltools")
+  library(htmltools)
+  remotes::install_github("rstudio/bslib")
+  library(bslib)
+ }
 
-install.packages("bslib")
-library(bslib)
 
 if(!require(ggthemes)){
   install.packages("ggthemes")
