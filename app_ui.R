@@ -3,7 +3,11 @@ ui <- fluidPage(id = "main_page",
                  theme = bs_theme(bootswatch = "cerulean", version = "4", base_font = c("Arial", "sans-serif"),
                                   heading_font = "'Helvetica Neue', Helvetica, sans-serif",),
                 inverse = TRUE,
-                titlePanel(HTML("<br><h5 style='color:#005ea2;font-weight: bold;'>DATA VISUALIZER</h5>")),
+                tags$head(tags$script('var dimension = [0, 0];$(document).on("shiny:connected", function(e) {
+                                      dimension[0] = window.innerWidth; dimension[1] = window.innerHeight; Shiny.onInputChange("dimension", dimension);});
+                                      $(window).resize(function(e) {dimension[0] = window.innerWidth; dimension[1] = window.innerHeight;
+                                      Shiny.onInputChange("dimension", dimension); });')),
+                titlePanel(HTML("<br><h5 style='color:#005ea2;font-weight: bold;'>DATA VISUALIZER</h5>"), windowTitle = "Data Visualizer"),
                 br(),
                 sidebarLayout(
                   sidebarPanel(width = 3,
@@ -31,7 +35,8 @@ ui <- fluidPage(id = "main_page",
                                  style = "pill", color = "primary", size = "sm"
                                )
                   ),
-                  mainPanel(plotOutput("myplot"))
+                  # mainPanel(plotlyOutput("myplot"))
+                  mainPanel(width = 9, uiOutput(outputId = "ui_mainpanel"))
                 )
                 
         

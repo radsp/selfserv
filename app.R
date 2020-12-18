@@ -8,11 +8,17 @@ library(shinyWidgets)
 library(civis)
 library(ggplot2)
 library(tidyverse)
+library(ggthemes)
+library(plotly)
 
-
+if(!require(bslib)){
+  install.packages("remotes")
+  remotes::install_github("rstudio/bslib")
+  library(bslib)
+}
 
 # remotes::install_github("rstudio/bslib")
-library(bslib)
+# library(bslib)
 
 
 # Load data ------------------------------------------------------------------------------
@@ -21,9 +27,10 @@ library(bslib)
 
 # Sources --------------------------------------------------------------------------------
 
+source("app_util.R")
 source("app_global.R")
 source("app_ui.R")
-source("app_server.R")
+source("app_server_v2.R")
 
 # Call the app ---------------------------------------------------------------------------
 
