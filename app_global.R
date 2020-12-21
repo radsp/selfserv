@@ -1,10 +1,4 @@
-shinyOptions(bslib = TRUE)
-# bs_global_theme(bootswatch = "litera")
-# my_theme <- bs_theme(
-#   bg = "#202123", fg = "#B8BCC2", primary = "#EA80FC", 
-#   base_font = font_google("Grandstander"),
-#   "font-size-base" = "1.1rem"
-# )
+# shinyOptions(bslib = TRUE)
 
 
 xadm1_mo <- read_civis(sql("SELECT * FROM staging_pmihq.selfserv_adm1_mo")) %>%

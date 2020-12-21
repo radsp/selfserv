@@ -10,19 +10,25 @@ library(ggplot2)
 library(tidyverse)
 library(plotly)
 
-if(!require(bslib)){
-  install.packages("remotes")
-  remotes::install_github("rstudio/htmltools")
-  library(htmltools)
-  remotes::install_github("rstudio/bslib")
-  library(bslib)
- }
+# if(!require(bslib)){
+#   install.packages("remotes")
+#   remotes::install_github("rstudio/htmltools")
+#   library(htmltools)
+#   remotes::install_github("rstudio/bslib")
+#   library(bslib)
+# }
 
+if(!require(shinythemes)){
+  install.packages("shinythemes")
+  library(shinythemes)
+}
 
 if(!require(ggthemes)){
   install.packages("ggthemes")
   library(ggthemes)
 }
+
+
 
 # remotes::install_github("rstudio/bslib")
 # library(bslib)
